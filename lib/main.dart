@@ -44,7 +44,6 @@ class _QuizPageState extends State<QuizPage> {
   // Question a1 = Question(a:  'You can lead a cow down stairs but not up stairs.', b: false);
 
 
-  int QuestionNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quisBrain.QuestionBank[QuestionNumber].QuestionText,
+                quisBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -78,7 +77,8 @@ class _QuizPageState extends State<QuizPage> {
                     TextStyle(color: Colors.white), // Set text color to white
               ),
               onPressed: () {
-                bool CorrectAnswer = quisBrain.QuestionBank[QuestionNumber].QuestionAnswer;
+                bool CorrectAnswer =
+                    quisBrain.getQuestionAnswer();
                 if (CorrectAnswer == true) {
                   print("you got it right");
                 } else {
@@ -86,7 +86,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  QuestionNumber++;
+                  quisBrain.getQuestionNumber();
                 });
               },
               child: Text(
@@ -106,7 +106,8 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.red,
               ),
               onPressed: () {
-                bool CorrectAnswer = quisBrain.QuestionBank[QuestionNumber].QuestionAnswer;
+                bool CorrectAnswer =
+                    quisBrain.getQuestionAnswer();
 
                 if (CorrectAnswer == false) {
                   print("you got it right");
@@ -115,7 +116,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  QuestionNumber++;
+                  quisBrain.getQuestionNumber();
                 });
               },
               child: Text(
