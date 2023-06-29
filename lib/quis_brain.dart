@@ -54,4 +54,17 @@ class QuisBrain {
   bool getQuestionAnswer() {
     return _QuestionBank[_QuestionNumber].QuestionAnswer;
   }
+
+  bool isFinished (){
+    return _QuestionNumber == _QuestionBank.length-1 ;
+  }
+  
+  void nextQuesiton () {
+    if (isFinished()) {
+      print('The Game is Finished Thank You so much');
+    }
+    _QuestionNumber++ ;
+
+  }
+
 }

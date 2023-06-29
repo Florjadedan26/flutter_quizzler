@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quis_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuisBrain quisBrain = QuisBrain();
 
@@ -30,20 +31,22 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> Scorekeeper = [];
 
-  // List<String> Questions = [
-  //   'You can lead a cow down stairs but not up stairs.',
-  //   'Approximately one quarter of human bones are in the feet.',
-  //   'A slug\'s blood is green.',
-  // ];
-  // List<bool> Answer = [
-  //   false,
-  //   true,
-  //   true,
-  // ];
-  //
-  // Question a1 = Question(a:  'You can lead a cow down stairs but not up stairs.', b: false);
 
 
+  void Checker(bool userPickAnswer) {
+    setState(() {
+
+
+
+    bool CorrectAnswer = quisBrain.getQuestionAnswer();
+    if (userPickAnswer == CorrectAnswer) {
+      Scorekeeper.add(Icon(Icons.check, color: Colors.green, ));
+    } else {
+      Scorekeeper.add(Icon(Icons.close , color: Colors.red));
+    }
+      quisBrain.getQuestionNumber();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,17 +80,7 @@ class _QuizPageState extends State<QuizPage> {
                     TextStyle(color: Colors.white), // Set text color to white
               ),
               onPressed: () {
-                bool CorrectAnswer =
-                    quisBrain.getQuestionAnswer();
-                if (CorrectAnswer == true) {
-                  print("you got it right");
-                } else {
-                  print("you got it wrong");
-                }
-
-                setState(() {
-                  quisBrain.getQuestionNumber();
-                });
+                Checker(true);
               },
               child: Text(
                 'True',
@@ -106,18 +99,7 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.red,
               ),
               onPressed: () {
-                bool CorrectAnswer =
-                    quisBrain.getQuestionAnswer();
-
-                if (CorrectAnswer == false) {
-                  print("you got it right");
-                } else {
-                  print('you got it wrong');
-                }
-
-                setState(() {
-                  quisBrain.getQuestionNumber();
-                });
+                Checker(false);
               },
               child: Text(
                 'False',
