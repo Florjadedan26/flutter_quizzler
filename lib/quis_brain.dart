@@ -66,5 +66,8 @@ class QuisBrain {
     _QuestionNumber++ ;
 
   }
+  void reset () {
+    _QuestionNumber = 0 ;
+  }
 
 }

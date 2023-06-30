@@ -31,20 +31,29 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> Scorekeeper = [];
 
-
-
   void Checker(bool userPickAnswer) {
-    setState(() {
-
-
-
     bool CorrectAnswer = quisBrain.getQuestionAnswer();
-    if (userPickAnswer == CorrectAnswer) {
-      Scorekeeper.add(Icon(Icons.check, color: Colors.green, ));
-    } else {
-      Scorekeeper.add(Icon(Icons.close , color: Colors.red));
-    }
-      quisBrain.getQuestionNumber();
+
+    setState(() {
+      if (quisBrain.isFinished()) {
+        Alert(
+                context: context,
+                title: 'Quizzler',
+                desc: 'You have Finish the Game!')
+            .show();
+        quisBrain.reset();
+        Scorekeeper.clear();
+      } else {
+        if (userPickAnswer == CorrectAnswer) {
+          Scorekeeper.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          Scorekeeper.add(Icon(Icons.close, color: Colors.red));
+        }
+        quisBrain.getQuestionNumber();
+      }
     });
   }
 
